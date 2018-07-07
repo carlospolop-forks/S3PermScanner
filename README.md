@@ -28,9 +28,12 @@ optional arguments:
   -l, --list              List all found open buckets locally
   --version VERSION     Display the current version of this tool
   -p, --perm-wordlist   Wordlist used to create new Bucket names
+  -s, --is-subdomain    (Switcher) If subdomain, then only names: "sub.domain.tld", "sub", "sub.domain", "sub-domain" & "subdomain" (Default: False)"
 </pre>
 
 The tool takes in a list of bucket names to check and creates a new list of possible bucket names. Found S3 buckets are output to file. The tool will also dump or list the contents of 'open' buckets locally.
+
+Use `-s` is list of subdomains.
 
 ### Interpreting Results
 
