@@ -49,12 +49,15 @@ parser.add_argument('--version', required=False, dest='version',
                     help='Display the current version of this tool')
 parser.add_argument('-p','--perm-wordlist', required=False, dest='wordlist', action='store_true',
                     help='Wordlist used to create new Bucket names')
+parser.add_argument('-s','--is-subdomain', required=False, dest='isSubdomain', action='store_true',
+                    help='If subdomain, then only names: "sub.domain.tld", "sub.domain", "sub-domain" & "subdomain" (Default: False)"')
 parser.add_argument('buckets', help='Name of text file containing buckets to check (Default: wordlist.txt)')
 
 # parser.set_defaults(includeClosed=False)
 parser.set_defaults(outFile='./buckets.txt')
 parser.set_defaults(dump=False)
 parser.set_defaults(wordlist='./wordlist.txt')
+parser.set_defaults(isSubdomain=False)
 
 
 if len(sys.argv) == 1:              # No args supplied, print the full help text instead of the short usage text
@@ -112,9 +115,9 @@ if os.path.isfile(args.buckets):
     with open(args.buckets, 'r') as f:
         for line in f:
             line = line.rstrip()            # Remove any extra whitespace
-            for l in newBucketNames(line, args.wordlist):
+            for l in newBucketNames(line, args.wordlist, args.isSubdomain):
                 s3.checkBucket(l, slog, flog, args.dump, args.list)
 else:
     # It's a single bucket
-    for l in newBucketNames(args.buckets, args.wordlist):
+    for l in newBucketNames(args.buckets, args.wordlist, args.isSubdomain):
         s3.checkBucket(l, slog, flog, args.dump, args.list)

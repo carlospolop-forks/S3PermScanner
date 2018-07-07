@@ -1,7 +1,7 @@
 
 # Create new possible bucket names from a domain
 
-def newBucketNames(inBucket, wpath):
+def newBucketNames(inBucket, wpath, isSubdomain):
     newNames = []
     if ".amazonaws.com" in inBucket:    # We were given a full s3 url
         bucket = inBucket[:inBucket.rfind(".s3")]
@@ -13,12 +13,20 @@ def newBucketNames(inBucket, wpath):
     newNames.append(bucket)
     domain = bucket.split(".")[0]
     if not domain in newNames:
-	newNames.append(domain)
-    with open(wpath, 'r') as f:
-        for line in f:
-	    line = line.rstrip()
-            newNames.append(domain+"-"+str(line))
-            newNames.append(str(line)+"-"+domain)
+	    newNames.append(domain) # sub.domain.com
+
+    if isSubdomain:
+        if bucket.split(".") > 2:
+            newNames.append(".".join(bucket.split(".")[:-1]))    # sub.domain
+            newNames.append("-".join(bucket.split(".")[:-1]))   # sub-domain
+            newNames.append("".join(bucket.split(".")[:-1]))    # subdomain
+
+    else:
+        with open(wpath, 'r') as f:
+            for line in f:
+            line = line.rstrip()
+                newNames.append(domain+"-"+str(line))
+                newNames.append(str(line)+"-"+domain)
     
     return newNames
     
