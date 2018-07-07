@@ -1,5 +1,8 @@
-# S3Scanner
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Build Status](https://travis-ci.org/sa7mon/S3Scanner.svg?branch=master)](https://travis-ci.org/sa7mon/S3Scanner)
+# S3PermScanner
+
+This project is a Fork of the project: [S3Scanner](https://github.com/carlospolop-forks/S3PermScanner)
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Build Status](https://travis-ci.org/sa7mon/s3permscanner.svg?branch=master)](https://travis-ci.org/sa7mon/s3permscanner)
 
 A tool to find open S3 buckets and dump their contents :droplet:
 
@@ -13,9 +16,7 @@ A tool to find open S3 buckets and dump their contents :droplet:
 ## Using
 
 <pre>
-#  s3scanner - Find S3 buckets and dump!
-#
-#  Author: Dan Salmon - @bltjetpack, github.com/sa7mon
+#  s3permscanner - Find S3 buckets and dump
 
 positional arguments:
   buckets                Name of text file containing buckets to check
@@ -25,9 +26,11 @@ optional arguments:
   -o, --out-file OUTFILE  Name of file to save the successfully checked buckets in (Default: buckets.txt)
   -d, --dump              Dump all found open buckets locally
   -l, --list              List all found open buckets locally
+  --version VERSION     Display the current version of this tool
+  -p, --perm-wordlist   Wordlist used to create new Bucket names
 </pre>
 
-The tool takes in a list of bucket names to check. Found S3 buckets are output to file. The tool will also dump or list the contents of 'open' buckets locally.
+The tool takes in a list of bucket names to check and creates a new list of possible bucket names. Found S3 buckets are output to file. The tool will also dump or list the contents of 'open' buckets locally.
 
 ### Interpreting Results
 
@@ -53,7 +56,7 @@ Conversely, you may be able to list ACLs but not read/write to the bucket
 ## Installation
   1. (Optional) `virtualenv venv && source ./venv/bin/activate`
   2. `pip install -r requirements.txt`
-  3. `python ./s3scanner.py`
+  3. `python ./s3permscanner.py`
 
 (Compatibility has been tested with Python 2.7 and 3.6)
 
@@ -78,26 +81,18 @@ github-dev:us-east-1
 1. Dump all open buckets, log both open and closed buckets to found.txt
 	
 	```bash
-	> python ./s3scanner.py --include-closed --out-file found.txt --dump names.txt
+	> python ./s3permscanner.py --include-closed --out-file found.txt --dump names.txt
 	```
 2. Just log open buckets to the default output file (buckets.txt)
 
 	```bash
-	> python ./s3scanner.py names.txt
+	> python ./s3permscanner.py names.txt
 	```
 3. Save file listings of all open buckets to file
     ```bash
-    > python ./s3scanner.py --list names.txt
+    > python ./s3permscanner.py --list names.txt
 
     ```
-
-## Contributing
-Issues are welcome and Pull Requests are appreciated. All contributions should be compatible with both Python 2.7 and 3.6.
-
-|    master    |    [![Build Status](https://travis-ci.org/sa7mon/S3Scanner.svg?branch=master)](https://travis-ci.org/sa7mon/S3Scanner)    |
-|:------------:|:-------------------------------------------------------------------------------------------------------------------------:|
-| enhancements | [![Build Status](https://travis-ci.org/sa7mon/S3Scanner.svg?branch=enhancements)](https://travis-ci.org/sa7mon/S3Scanner) |
-|     bugs     |     [![Build Status](https://travis-ci.org/sa7mon/S3Scanner.svg?branch=bugs)](https://travis-ci.org/sa7mon/S3Scanner)     |
 
 ### Testing
 * All test are currently in `test_scanner.py`

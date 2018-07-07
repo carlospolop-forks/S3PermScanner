@@ -32,9 +32,8 @@ class CustomFormatter(argparse.RawTextHelpFormatter, argparse.RawDescriptionHelp
 
 
 # Instantiate the parser
-parser = argparse.ArgumentParser(description='#  s3scanner - Find S3 buckets and dump!\n'
-                                             '#\n'
-                                             '#  Author: Dan Salmon - @bltjetpack, github.com/sa7mon\n',
+parser = argparse.ArgumentParser(description='#  s3permscanner - Find S3 buckets and dump!\n'
+                                             '#\n',
                                  prog='s3scanner', formatter_class=CustomFormatter)
 
 # Declare arguments
