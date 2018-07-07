@@ -12,8 +12,11 @@ def newBucketNames(inBucket, wpath):
 
     newNames.append(bucket)
     domain = bucket.split(".")[0]
+    if not domain in newNames:
+	newNames.append(domain)
     with open(wpath, 'r') as f:
         for line in f:
+	    line = line.rstrip()
             newNames.append(domain+"-"+str(line))
             newNames.append(str(line)+"-"+domain)
     
