@@ -24,9 +24,9 @@ def newBucketNames(inBucket, wpath, isSubdomain):
     else:
         with open(wpath, 'r') as f:
             for line in f:
-            line = line.rstrip()
+                line = line.rstrip()
                 newNames.append(domain+"-"+str(line))
                 newNames.append(str(line)+"-"+domain)
-    
+    print(str(newNames))
     return newNames
     

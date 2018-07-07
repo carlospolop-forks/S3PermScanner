@@ -1,6 +1,6 @@
-flaws.cloud
-arstechnica.com
-lifehacker.com
-gizmodo.com
-reddit.com
-stackoverflow.com
+asd.flaws.cloud
+asd.arstechnica.com
+fds.lifehacker.com
+qergwerg.gizmodo.com
+qwefqwf.reddit.com
+qfwdc.stackoverflow.com

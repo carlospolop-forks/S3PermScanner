@@ -50,7 +50,7 @@ parser.add_argument('--version', required=False, dest='version',
 parser.add_argument('-p','--perm-wordlist', required=False, dest='wordlist', action='store_true',
                     help='Wordlist used to create new Bucket names')
 parser.add_argument('-s','--is-subdomain', required=False, dest='isSubdomain', action='store_true',
-                    help='If subdomain, then only names: "sub.domain.tld", "sub.domain", "sub-domain" & "subdomain" (Default: False)"')
+                    help='If subdomain, then only names: "sub.domain.tld", "sub", "sub.domain", "sub-domain" & "subdomain" (Default: False)"')
 parser.add_argument('buckets', help='Name of text file containing buckets to check (Default: wordlist.txt)')
 
 # parser.set_defaults(includeClosed=False)
